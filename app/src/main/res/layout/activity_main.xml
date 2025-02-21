@@ -48,18 +48,14 @@
         android:text="Calcular IMC" />
 
     <TextView
+        android:id="@+id/resultIMC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="IMC :"
+        android:textAlignment="center"
+        android:text=" "
         android:textSize="24sp"
         android:layout_marginTop="16dp"/>
 
-    <EditText
-        android:id="@+id/resultIMC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:hint="%" />
+
 
 </LinearLayout>
