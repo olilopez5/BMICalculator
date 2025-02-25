@@ -11,7 +11,7 @@
     android:gravity="center_horizontal">
 
 
-    <!--Genero -->
+    <!--Genero
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,9 +39,9 @@
                 android:layout_height="wrap_content"
                 android:text="Mujer"/>
         </RadioGroup>
+-->
 
-
-<!--Edad -->
+    <!--Altura -->
 
 
     <com.google.android.material.card.MaterialCardView
@@ -59,28 +59,28 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edad :"
+                android:text="@string/label_height"
                 android:layout_gravity="center_horizontal"
                 android:textSize="24sp"/>
 
             <TextView
-                android:id="@+id/edadTextView"
+                android:id="@+id/heightTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="26 "
+                android:text="170 "
                 android:layout_gravity="center_horizontal"
                 android:textSize="35sp"
                 android:textStyle="bold"
                 />
 
             <com.google.android.material.slider.Slider
-                android:id="@+id/edadSlider"
+                android:id="@+id/heightSlider"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:stepSize="1"
-                android:value="50"
-                android:valueFrom="13"
-                android:valueTo="100"
+                android:value="170"
+                android:valueFrom="50"
+                android:valueTo="300"
                 app:labelBehavior="gone"
                 app:tickVisible="false" />
 
@@ -88,36 +88,69 @@
 
 </com.google.android.material.card.MaterialCardView>
 
-    <!--Altura -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Altura :"
-        android:textSize="24sp"/>
 
-    <EditText
-        android:id="@+id/heightEditText"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:hint="cm"
-        android:textAlignment="textEnd"
-        android:inputType="number" />
 
     <!--Peso -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Peso :"
-        android:textSize="24sp"
-        android:layout_marginTop="16dp"/>
 
-    <EditText
-        android:id="@+id/weightEditText"
-        android:layout_width="150dp"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="kg"
-        android:textAlignment="textEnd"
-        android:inputType="numberDecimal"/>
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_weight"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/minusButton"
+                    style="?attr/materialIconButtonFilledStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/icon_minus" />
+
+
+                <TextView
+                    android:id="@+id/weightTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:text="75"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textSize="35sp" />
+
+                <Button
+                    android:id="@+id/addButton"
+                    style="?attr/materialIconButtonFilledStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/icon_add"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
+
 
     <!--Boton Calcular -->
 
@@ -127,15 +160,26 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:text="Calcular IMC" />
-
+        android:textSize="25sp"
+        android:text="@string/label_calculate" />
     <TextView
         android:id="@+id/resultBMI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:text=" "
-        android:textSize="24sp"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text=" "
+        android:textSize="50sp"
+        android:textStyle="bold"
         android:layout_marginTop="16dp"/>
 
 
