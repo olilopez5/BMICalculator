@@ -8,38 +8,50 @@
     tools:context=".MainActivity"
     android:orientation="vertical"
     android:padding="16dp"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:background="@color/background">
 
 
-    <!--Genero
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Selecciona tu género de nacimiento :"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp"/>
+    <!--Genero -->
 
-        <RadioGroup
-            android:id="@+id/radioGroupGenders"
-            android:layout_width="wrap_content"
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="349dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
+            android:padding="16dp">
 
-            <RadioButton
-                android:id="@+id/radioButtonMale"
+            <Button
+                android:id="@+id/maleButton"
+                style="?attr/materialIconButtonFilledStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hombre"
-                android:layout_marginEnd="16dp"/>
+                android:layout_weight="1"
+                android:text="@string/label_male"
+                app:icon="@drawable/icon_male" />
 
-            <RadioButton
-                android:id="@+id/radioButtonFemale"
+            <Button
+                android:id="@+id/femaleButton"
+                style="?attr/materialIconButtonFilledStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mujer"/>
-        </RadioGroup>
--->
+                android:layout_weight="0.85"
+                android:text="@string/label_female"
+                app:icon="@drawable/icon_female"
+                />
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
 
     <!--Altura -->
 
@@ -63,11 +75,11 @@
                 android:layout_gravity="center_horizontal"
                 android:textSize="24sp"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/heightTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="170 "
+                android:text="170"
                 android:layout_gravity="center_horizontal"
                 android:textSize="35sp"
                 android:textStyle="bold"
@@ -162,6 +174,19 @@
         android:layout_marginTop="16dp"
         android:textSize="25sp"
         android:text="@string/label_calculate" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
     <TextView
         android:id="@+id/resultBMI"
         android:layout_width="match_parent"
@@ -183,5 +208,8 @@
         android:layout_marginTop="16dp"/>
 
 
+</LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

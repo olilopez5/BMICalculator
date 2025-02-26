@@ -1,12 +1,17 @@
 package com.example.bmicalculator
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.addTextChangedListener
 import com.google.android.material.slider.Slider
 import java.util.Locale
 import kotlin.math.pow
@@ -15,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
 
     lateinit var heightSlider: Slider
-    lateinit var heightTextView: TextView
+    lateinit var heightTextView: EditText
 
     lateinit var weightTextView: TextView
     lateinit var addButton: Button
@@ -41,36 +46,43 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        heightTextView = findViewById(R.id.heightTextView)
-        heightSlider = findViewById(R.id.heightSlider)
-
-        weightTextView = findViewById(R.id.weightTextView)
-        minusButton = findViewById(R.id.minusButton)
-        addButton = findViewById(R.id.addButton)
-
-
-        calculateButton = findViewById(R.id.calculateButton)
-        resultBMI = findViewById(R.id.resultBMI)
-        descriptionTextView = findViewById(R.id.descriptionTextView)
-
+        initViews()
 
 
         heightSlider.addOnChangeListener { slider, value, fromUser ->
             height = value
-            heightTextView.text = "${height.toInt()}"
+            heightTextView.setText("${height.toInt()}")
         }
+
+        heightTextView.addTextChangedListener {
+            val text = heightTextView.text.toString()
+            if (text.isNotEmpty()) {
+                if (text.toFloat() >= heightSlider.valueFrom && text.toFloat() <= heightSlider.valueTo) {
+                    heightSlider.value = text.toFloat()
+                }
+            }
+        }
+
         addButton.setOnClickListener {
             weight++
+            if (weight > 300){
+                weight = 300f
+            }
             weightTextView.text = "${weight.toInt()}"
         }
 
         minusButton.setOnClickListener {
             weight--
+            if(weight < 1){
+                weight = 1f
+            }
             weightTextView.text = "${weight.toInt()}"
         }
 
         calculateButton.setOnClickListener {
             val result = weight / (height / 100).pow(2)
+
+            //formateo de resultado para adaptarlo al idioma del telefono y dos decimales
 
             resultBMI.text = String.format(Locale.getDefault(), "%.2f", result)
 
@@ -106,6 +118,7 @@ class MainActivity : AppCompatActivity() {
                 else -> {
                     colorId = R.color.bmi_obesity3
                     textId = R.string.bmi_obesity3
+                    showObesityDialog()
                 }
 
             }
@@ -113,5 +126,31 @@ class MainActivity : AppCompatActivity() {
             descriptionTextView.setTextColor(getColor(colorId))
             descriptionTextView.text = getString(textId)
         }
+    }
+    fun initViews(){
+        heightTextView = findViewById(R.id.heightTextView)
+        heightSlider = findViewById(R.id.heightSlider)
+
+        weightTextView = findViewById(R.id.weightTextView)
+        minusButton = findViewById(R.id.minusButton)
+        addButton = findViewById(R.id.addButton)
+
+
+        calculateButton = findViewById(R.id.calculateButton)
+        resultBMI = findViewById(R.id.resultBMI)
+        descriptionTextView = findViewById(R.id.descriptionTextView)
+    }
+
+    fun showObesityDialog(){
+        AlertDialog.Builder(this)
+            .setTitle(R.string.obesity3_alert_title)
+            .setMessage(R.string.obesity3_alert_message)
+            .setPositiveButton(R.string.obesity3_alert_positive_button, { dialog , which ->
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://hospitalcruzrojacordoba.es/obesidad-nutricion-cordoba/obesidad-morbida-tratamiento-para-adelgazar/"))
+                startActivity(browserIntent)
+            })
+            .setNegativeButton(android.R.string.cancel,null)
+            .show()
+
     }
 }
